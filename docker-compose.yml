@@ -1,0 +1,70 @@
+version: '3'
+services:
+
+  db:
+    image: postgres:11-alpine
+    environment:
+      POSTGRES_USER: 'nens'
+      POSTGRES_PASSWORD: 'nens'
+      POSTGRES_DB: 'mfm_beheerportaal'
+      PGDATA: '/var/lib/postgresql/data/pgdata'
+    volumes:
+      - pgdata:/var/lib/postgresql/data/pgdata
+
+  web:
+    build: .
+    image: mfm-beheerportaal
+    entrypoint: "pipenv run"
+    command: python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - db
+      - rabbit
+      - worker
+    environment:
+      - DOCKER=True
+      - PYTHONUNBUFFERED=1
+      - PIPENV_VENV_IN_PROJECT=1
+      - SHELL=/bin/bash
+    volumes:
+      - ./:/code
+      - ~/.netrc:/home/nens/.netrc  # github authentication
+      - ~/.cache:/home/nens/.cache  # shared cache
+
+
+  worker:
+    image: mfm-beheerportaal
+    entrypoint: "pipenv run"
+    command: celery worker --app=mfm_beheerportaal --concurrency=1 --pidfile=var/celery.pid --loglevel=info --task-events
+    depends_on:
+      - db
+      - rabbit
+    environment:
+      - DOCKER=True
+      - PYTHONUNBUFFERED=1
+      - PIPENV_VENV_IN_PROJECT=1
+      - SHELL=/bin/bash
+    volumes:
+      - ./:/code
+      - ~/.netrc:/home/nens/.netrc  # github authentication
+      - ~/.cache:/home/nens/.cache  # shared cache
+
+  rabbit:
+    image: rabbitmq
+
+
+volumes:
+  pgdata:
+
+#for local development, you may want to open some ports by adding a
+#docker-compose.override.yml file with host:docker port mappings
+#
+#version: '3'
+#services:
+#
+#  db:
+#    ports:
+#      - "5435:5432"
+#
+#  web:
+#    ports:
+#      - "5000:8000"

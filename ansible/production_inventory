@@ -1,0 +1,32 @@
+all:
+  vars:
+    build_user: buildout
+    project_slug: mfm-beheerportaal
+    package_name: mfm_beheerportaal
+    site_name: "admin.multiflexmeter.net"
+    checkout_name: please-provide-checkout-name-in-the-extra-vars
+    project_path: "/srv/{{ site_name }}"
+    django_settings: "{{ package_name }}.settings"
+    supervisor_port: todo.put.port.here
+
+web:
+  hosts:
+    admin.multiflexmeter.net:
+  vars:
+    gunicorn_port: todo.put.port.here
+    gunicorn_workers: 3
+    gunicorn_max_requests: 50000
+    supervisor_programs: [
+        'gunicorn'
+    ]
+
+
+task:
+  hosts:
+    admin.multiflexmeter.net:
+  vars:
+    celery_concurrency: 1
+    supervisor_programs: [
+        'celery'
+    ]
+
