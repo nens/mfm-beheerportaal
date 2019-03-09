@@ -14,7 +14,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Set up logging. No console logging. By default, var/log/django.log and
-# sentry at 'WARN' level.
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
@@ -47,15 +46,11 @@ LOGGING = {
             'class': 'logging.FileHandler',
             'formatter': 'verbose',
             'filename': os.path.join(BASE_DIR, 'var', 'log', 'sql.log'),
-        },
-        'sentry': {
-            'level': 'WARN',
-            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
-        },
+        }
     },
     'loggers': {
         '': {
-            'handlers': ['console', 'logfile', 'sentry'],
+            'handlers': ['console', 'logfile'],
             'propagate': True,
             'level': 'INFO',
         },
@@ -72,7 +67,7 @@ LOGGING = {
             'level': 'INFO',  # Suppress the huge output in tests
         },
         'django.request': {
-            'handlers': ['console', 'logfile', 'sentry'],
+            'handlers': ['console', 'logfile'],
             'propagate': False,
             'level': 'ERROR',  # WARN also shows 404 errors
         },
@@ -183,7 +178,6 @@ MIDDLEWARE_CLASSES = (
 
 INSTALLED_APPS = (
     'mfm_beheerportaal',
-    'raven.contrib.django.raven_compat',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -200,11 +194,6 @@ CELERY_RESULT_BACKEND = 'django-db'
 INSTALLED_APPS += (
     'django_celery_results',
 )
-
-
-# TODO: Put your real url here to configure Sentry.
-# RAVEN_CONFIG = {
-#     'dsn': ('http://some:hash@your.sentry.site/some_number')}
 
 # Add your production name here
 ALLOWED_HOSTS = ['admin.multiflexmeter.net']
