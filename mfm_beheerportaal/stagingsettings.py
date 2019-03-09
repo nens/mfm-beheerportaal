@@ -13,9 +13,5 @@ DATABASES = {
         },
     }
 
-# TODO: Put your real url here to configure Sentry.
-# RAVEN_CONFIG = {
-#     'dsn': ('http://some:hash@your.sentry.site/some_number')}
-
 # Add your staging name here
 ALLOWED_HOSTS = ['admin.multiflexmeter.net']
