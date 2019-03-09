@@ -82,11 +82,11 @@ DEBUG = False
 # In case of geodatabase, prepend with: django.contrib.gis.db.backends.(postgis)
 DATABASES = {
     'default': {
-        'NAME': 'mfm_beheerportaal',
+        'NAME': 'beheerportaal',
         'ENGINE': 'django.db.backends.postgresql',
-        'USER': 'todo.dbuser',
-        'PASSWORD': 'todo.dbpassword',
-        'HOST': 'todo.dbport',
+        'USER': 'beheerportaal',
+        'PASSWORD': 'beheerportaal',
+        'HOST': 'localhost',
         'PORT': '5432',
         }
     }
