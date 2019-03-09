@@ -77,9 +77,7 @@ LOGGING = {
 # Production, so DEBUG is False. developmentsettings.py sets it to True.
 DEBUG = False
 
-# TODO: Switch this to the real production database.
-# ^^^ 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-# In case of geodatabase, prepend with: django.contrib.gis.db.backends.(postgis)
+# Override this in your own "localproductionsettings.py" file
 DATABASES = {
     'default': {
         'NAME': 'beheerportaal',
@@ -133,6 +131,7 @@ MEDIA_URL = '/media/'
 # django-staticfiles.
 STATIC_URL = '/static_media/'
 
+# Override this in your own "localproductionsettings.py" file
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = "y2ru!xw*hdw^qpj!k*)ct(8v503q)yn2&c3ps*7#iz^poo(6#k"
 
