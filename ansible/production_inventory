@@ -4,16 +4,16 @@ all:
     project_slug: mfm-beheerportaal
     package_name: mfm_beheerportaal
     site_name: "admin.multiflexmeter.net"
-    checkout_name: please-provide-checkout-name-in-the-extra-vars
+    checkout_name: master
     project_path: "/srv/{{ site_name }}"
     django_settings: "{{ package_name }}.settings"
-    supervisor_port: todo.put.port.here
+    supervisor_port: 5000
 
 web:
   hosts:
     admin.multiflexmeter.net:
   vars:
-    gunicorn_port: todo.put.port.here
+    gunicorn_port: 6000
     gunicorn_workers: 3
     gunicorn_max_requests: 50000
     supervisor_programs: [
