@@ -6,13 +6,15 @@
 ---
 - name: deploy new version of the project to the server
   hosts: web
-  remote_user: "{{ build_user }}"
+  become: yes
+  become_user: "{{ build_user }}"
 
   tasks:
 
     - name: Checkout correct version from github.
       git:
-        repo: "https://github.com/nens/{{ project_slug }}.git"
+        accept_hostkey: true
+        repo: "ssh://git@github.com/nens/{{ project_slug }}.git"
         dest: "{{ project_path }}"
         version: "{{ checkout_name }}"
 
