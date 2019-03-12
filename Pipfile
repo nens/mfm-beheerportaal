@@ -10,6 +10,7 @@ pylint = "*"
 # Should always be installed like this, else setup.py is bypassed (and we would
 # have to modify PYTHONPATH at several points in the project)
 "mfm-beheerportaal" = {path = ".", editable = true}
+django = "*"
 
 [requires]
 python_version = "3.6"
