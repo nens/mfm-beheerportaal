@@ -2,6 +2,8 @@
 "flake8" = "*"
 ipdb = "*"
 ipython = "*"
+pylint = "*"
+"autopep8" = "*"
 
 [packages]
 # === This package ===
