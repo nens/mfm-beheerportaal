@@ -9,7 +9,7 @@ pylint = "*"
 # === This package ===
 # Should always be installed like this, else setup.py is bypassed (and we would
 # have to modify PYTHONPATH at several points in the project)
-"mfm-beheerportaal" = {path = ".", editable = true}
+mfm-beheerportaal = {editable = true,path = "."}
 django = "*"
 
 [requires]
