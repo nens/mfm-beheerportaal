@@ -12,6 +12,7 @@ pylint = "*"
 mfm-beheerportaal = {editable = true,path = "."}
 django = "*"
 django-extensions = "*"
+djangorestframework = "*"
 
 [requires]
 python_version = "3.6"

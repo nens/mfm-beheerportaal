@@ -178,6 +178,7 @@ MIDDLEWARE = (
 INSTALLED_APPS = (
     'django_extensions',
     'mfm_beheerportaal',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
