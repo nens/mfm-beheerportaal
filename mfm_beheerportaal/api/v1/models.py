@@ -12,6 +12,7 @@ from mfm_beheerportaal import validators
 class Organisation(Group):
     """An organisation as group"""
     abbreviation = models.CharField(
+        primary_key=True,
         max_length=100,
         unique=True,
         blank=True
@@ -42,7 +43,8 @@ class MultiflexmeterVersion(models.Model):
     """Specifies a Multiflexmeter version"""
     name = models.CharField(
         max_length=100,
-        unique=True
+        unique=True,
+        primary_key=True
     )
     description = models.TextField(
         null=True,
@@ -99,6 +101,7 @@ class Multiflexmeter(PhysicalLocationMixin, models.Model):
     """A Multiflexmeter device"""
     identifier = models.CharField(
         _('Identifier'),
+        primary_key=True,
         max_length=100,
         unique=True
     )
@@ -138,6 +141,7 @@ class Multiflexmeter(PhysicalLocationMixin, models.Model):
 class WNS(models.Model):
     """A dutch specification for measurement properties"""
     number = models.CharField(
+        primary_key=True,
         max_length=100,
         unique=True
     )
@@ -160,6 +164,7 @@ class Gateway(PhysicalLocationMixin, models.Model):
     """A physical LoRa gateway"""
     identifier = models.CharField(
         _('Identifier'),
+        primary_key=True,
         max_length=100,
         unique=True
     )
