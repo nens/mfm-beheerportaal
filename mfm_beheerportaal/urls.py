@@ -20,6 +20,7 @@ from rest_framework import routers
 from mfm_beheerportaal import views
 
 router = routers.DefaultRouter()
+router.register(r'devices', views.devices.DeviceViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
