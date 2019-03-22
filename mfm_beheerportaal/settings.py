@@ -176,6 +176,7 @@ MIDDLEWARE = (
     )
 
 INSTALLED_APPS = (
+    'django_extensions',
     'mfm_beheerportaal',
     'django.contrib.admin',
     'django.contrib.auth',

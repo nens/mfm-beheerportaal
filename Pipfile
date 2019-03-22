@@ -11,6 +11,7 @@ pylint = "*"
 # have to modify PYTHONPATH at several points in the project)
 mfm-beheerportaal = {editable = true,path = "."}
 django = "*"
+django-extensions = "*"
 
 [requires]
 python_version = "3.6"
