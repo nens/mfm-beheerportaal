@@ -13,6 +13,7 @@ mfm-beheerportaal = {editable = true,path = "."}
 django = "*"
 django-extensions = "*"
 djangorestframework = "*"
+pylint-django = "*"
 
 [requires]
 python_version = "3.6"
