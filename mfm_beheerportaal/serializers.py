@@ -11,7 +11,7 @@ class MultiflexmeterSerializer(serializers.HyperlinkedModelSerializer):
 class MultiflexmeterVersionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.MultiflexmeterVersion
-        fields = ('full_name', 'short_name')
+        fields = ('name', 'description', 'version_major', 'version_minor', 'version_patch')
 
 class GatewaySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
