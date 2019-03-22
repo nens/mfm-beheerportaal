@@ -1,7 +1,9 @@
+import datetime
+
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-import datetime
+from mfm_beheerportaal import validators
 
 # Create your models here.
 
@@ -9,18 +11,22 @@ import datetime
 class Organisation(models.Model):
     """An organisation"""
     full_name = models.CharField(
-        max_length=100)
+        max_length=100
+    )
     short_name = models.CharField(
         max_length=100,
-        blank=True)
+        blank=True
+    )
 
 
 class MultiflexmeterVersion(models.Model):
     """Specifies a Multiflexmeter version"""
     full_name = models.CharField(
-        max_length=100)
+        max_length=100
+    )
     short_name = models.CharField(
-        max_length=100)
+        max_length=100
+    )
 
 
 class PhysicalLocationMixin(models.Model):
@@ -31,17 +37,20 @@ class PhysicalLocationMixin(models.Model):
         _('Latitude'),
         default=0,
         max_digits=11,
-        decimal_places=8)
+        decimal_places=8
+    )
     longitude = models.DecimalField(
         _('Longitude'),
         default=0,
         max_digits=11,
-        decimal_places=8)
+        decimal_places=8
+    )
     altitude = models.DecimalField(
         _('Altitude'),
         default=0,
         max_digits=11,
-        decimal_places=8)
+        decimal_places=8
+    )
 
 
 class Multiflexmeter(PhysicalLocationMixin, models.Model):
@@ -49,35 +58,45 @@ class Multiflexmeter(PhysicalLocationMixin, models.Model):
     identifier = models.CharField(
         _('Identifier'),
         max_length=100,
-        unique=True)
+        unique=True
+    )
     description = models.TextField(
         _('Description'),
-        max_length=100)
+        max_length=100
+    )
     owner = models.ForeignKey(
         Organisation,
         on_delete=models.SET_NULL,
-        null=True)
+        null=True
+    )
     version = models.ForeignKey(
         MultiflexmeterVersion,
         on_delete=models.SET_NULL,
-        null=True)
+        null=True
+    )
     created = models.DateField(
         _('Created on'),
-        default=datetime.date.today)
+        default=datetime.date.today
+    )
     active = models.BooleanField(
         _('Active'),
-        default=False)
+        default=False
+    )
 
 class WNS(models.Model):
     """A dutch specification for measurement properties"""
     number = models.CharField(
-        max_length=100)
+        max_length=100
+    )
     name = models.CharField(
-        max_length=100)
+        max_length=100
+    )
     unit = models.CharField(
-        max_length=100)
+        max_length=100
+    )
     format = models.CharField(
-        max_length=100)
+        max_length=100
+    )
 
 
 class Gateway(PhysicalLocationMixin, models.Model):
@@ -85,13 +104,18 @@ class Gateway(PhysicalLocationMixin, models.Model):
     identifier = models.CharField(
         _('Identifier'),
         max_length=100,
-        unique=True)
+        unique=True
+    )
     owner = models.ForeignKey(
         Organisation,
-        on_delete=models.CASCADE)
+        on_delete=models.CASCADE
+    )
     description = models.TextField(
-        _('Description'))
+        _('Description')
+    )
     router = models.CharField(
-        max_length=100)
+        max_length=100
+    )
     brand = models.CharField(
-        max_length=100)
+        max_length=100
+    )
