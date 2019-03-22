@@ -18,6 +18,20 @@ class Organisation(Group):
     )
 
 
+class Network(models.Model):
+    """A network which provides communication"""
+    name = models.CharField(
+        _('name'),
+        max_length=100,
+        unique=True
+    )
+    active = models.BooleanField(
+        default=True
+    )
+
+    def __str__(self):
+        return self.name
+
 class MultiflexmeterVersion(models.Model):
     """Specifies a Multiflexmeter version"""
     name = models.CharField(
@@ -93,6 +107,10 @@ class Multiflexmeter(PhysicalLocationMixin, models.Model):
         on_delete=models.SET_NULL,
         null=True
     )
+    network = models.ForeignKey(
+        Network,
+        on_delete=models.SET_NULL
+    )
     version = models.ForeignKey(
         MultiflexmeterVersion,
         on_delete=models.SET_NULL,
@@ -156,3 +174,4 @@ class Gateway(PhysicalLocationMixin, models.Model):
 
     def __str__(self):
         return self.identifier
+
