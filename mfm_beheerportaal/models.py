@@ -10,10 +10,10 @@ from mfm_beheerportaal import validators
 
 class Organisation(models.Model):
     """An organisation"""
-    full_name = models.CharField(
+    name = models.CharField(
         max_length=100
     )
-    short_name = models.CharField(
+    abbreviation = models.CharField(
         max_length=100,
         blank=True
     )
