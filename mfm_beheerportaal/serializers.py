@@ -8,4 +8,7 @@ class MultiflexmeterSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('identifier', 'description', 'owner',
                   'version', 'created', 'active')
 
-
+class MultiflexmeterVersionSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = models.MultiflexmeterVersion
+        fields = ('full_name', 'short_name')
