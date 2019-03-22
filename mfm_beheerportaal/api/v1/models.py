@@ -84,7 +84,9 @@ class Multiflexmeter(PhysicalLocationMixin, models.Model):
     )
     description = models.TextField(
         _('Description'),
-        max_length=100
+        max_length=100,
+        blank=True,
+        null=True
     )
     owner = models.ForeignKey(
         Organisation,
@@ -141,7 +143,9 @@ class Gateway(PhysicalLocationMixin, models.Model):
         on_delete=models.CASCADE
     )
     description = models.TextField(
-        _('Description')
+        _('Description'),
+        blank=True,
+        null=True
     )
     router = models.CharField(
         max_length=100
