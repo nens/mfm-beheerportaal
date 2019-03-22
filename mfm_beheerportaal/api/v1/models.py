@@ -65,6 +65,9 @@ class PhysicalLocationMixin(models.Model):
         decimal_places=8
     )
 
+    class Meta:
+        abstract = True
+
 
 class Multiflexmeter(PhysicalLocationMixin, models.Model):
     """A Multiflexmeter device"""
