@@ -38,10 +38,19 @@ class MultiflexmeterVersion(models.Model):
         _("Patch version")
     )
 
+    def get_version(self):
+        """Get the semantic version as string"""
+        return f'{self.version_major}.{self.version_minor}.{self.version_patch}'
+
+    def __str__(self):
+        return f'{self.name} {self.get_version()}'
+
 
 class PhysicalLocationMixin(models.Model):
-    """Defines a physical location through coordinates with altitude.
-    Defaults to (0,0,0)"""
+    """
+    Defines a physical location through coordinates with altitude.
+    Defaults to (0,0,0).
+    """
     # Location
     latitude = models.DecimalField(
         _('Latitude'),
@@ -96,6 +105,9 @@ class Multiflexmeter(PhysicalLocationMixin, models.Model):
         default=False
     )
 
+    def __str__(self):
+        return self.identifier
+
 class WNS(models.Model):
     """A dutch specification for measurement properties"""
     number = models.CharField(
@@ -112,6 +124,9 @@ class WNS(models.Model):
     format = models.CharField(
         max_length=100
     )
+    
+    def __str__(self):
+        return self.name
 
 
 class Gateway(PhysicalLocationMixin, models.Model):
@@ -134,3 +149,6 @@ class Gateway(PhysicalLocationMixin, models.Model):
     brand = models.CharField(
         max_length=100
     )
+
+    def __str__(self):
+        return self.identifier
