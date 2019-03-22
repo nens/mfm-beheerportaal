@@ -1,6 +1,7 @@
 
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
+from rest_framework.decorators import action
 
 class TimeserieViewSet(ViewSet):
     """
@@ -14,6 +15,13 @@ class TimeserieViewSet(ViewSet):
 
     def retrieve(self, request, pk):
         """
-        Retrieve a range of data from a timeseries.
+        Retrieve all measurements in a certain timerange for given devices
+        """
+        return Response('Not implemented')
+
+    @action(methods=['get'], detail=True, url_path='(?P<wns_id>[^/.]+)', url_name='WNS')
+    def retrieve_wns(self, request, pk, wns_id):
+        """
+        Retrieve a specific measurement in a certain timerange for given devices
         """
         return Response('Not implemented')
