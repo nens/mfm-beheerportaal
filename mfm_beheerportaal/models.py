@@ -11,10 +11,12 @@ from mfm_beheerportaal import validators
 class Organisation(models.Model):
     """An organisation"""
     name = models.CharField(
-        max_length=100
+        max_length=100,
+        unique=True
     )
     abbreviation = models.CharField(
         max_length=100,
+        unique=True,
         blank=True
     )
 
@@ -22,7 +24,8 @@ class Organisation(models.Model):
 class MultiflexmeterVersion(models.Model):
     """Specifies a Multiflexmeter version"""
     name = models.CharField(
-        max_length=100
+        max_length=100,
+        unique=True
     )
     description = models.TextField(
         null=True,
@@ -96,10 +99,12 @@ class Multiflexmeter(PhysicalLocationMixin, models.Model):
 class WNS(models.Model):
     """A dutch specification for measurement properties"""
     number = models.CharField(
-        max_length=100
+        max_length=100,
+        unique=True
     )
     name = models.CharField(
-        max_length=100
+        max_length=100,
+        unique=True
     )
     unit = models.CharField(
         max_length=100
