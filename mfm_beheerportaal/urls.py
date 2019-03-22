@@ -17,16 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 
-from mfm_beheerportaal import views
-
-router = routers.DefaultRouter()
-router.register(r'devices', views.devices.DeviceViewSet)
-router.register(r'device-versions', views.device_version.DeviceVersionViewSet)
-router.register(r'gateways', views.gateways.GatewayViewSet)
-router.register(r'organisations', views.organisations.OrganisationViewSet)
+from mfm_beheerportaal.api.v1 import urls as api_v1
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
+    path('api/v1/', include(api_v1.urlpatterns)),
     path('api-auth/', include('rest_framework.urls'))
 ]

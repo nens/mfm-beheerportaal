@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from mfm_beheerportaal import models
+from mfm_beheerportaal.api.v1 import models
 
 class MultiflexmeterSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
