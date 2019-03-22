@@ -21,11 +21,21 @@ class Organisation(models.Model):
 
 class MultiflexmeterVersion(models.Model):
     """Specifies a Multiflexmeter version"""
-    full_name = models.CharField(
+    name = models.CharField(
         max_length=100
     )
-    short_name = models.CharField(
-        max_length=100
+    description = models.TextField(
+        null=True,
+        blank=True
+    )
+    version_major = models.IntegerField(
+        _("Major version")
+    )
+    version_minor = models.IntegerField(
+        _("Minor version")
+    )
+    version_patch = models.IntegerField(
+        _("Patch version")
     )
 
 
