@@ -68,9 +68,16 @@ class Multiflexmeter(PhysicalLocationMixin, models.Model):
         _('Active'),
         default=False)
 
-        MultiflexmeterVersion, on_delete=models.SET_NULL, null=True)
-    created = models.DateField(_('Created on'), default=datetime.date.today)
-    active = models.BooleanField(_('Active'), default=False)
+class WNS(models.Model):
+    """A dutch specification for measurement properties"""
+    number = models.CharField(
+        max_length=100)
+    name = models.CharField(
+        max_length=100)
+    unit = models.CharField(
+        max_length=100)
+    format = models.CharField(
+        max_length=100)
 
 
 class Gateway(PhysicalLocationMixin, models.Model):
