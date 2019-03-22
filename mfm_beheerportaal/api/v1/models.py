@@ -26,7 +26,7 @@ class Network(models.Model):
         unique=True
     )
     active = models.BooleanField(
-        default=True
+        default=False
     )
 
     def __str__(self):
@@ -109,7 +109,8 @@ class Multiflexmeter(PhysicalLocationMixin, models.Model):
     )
     network = models.ForeignKey(
         Network,
-        on_delete=models.SET_NULL
+        on_delete=models.SET_NULL,
+        null=True
     )
     version = models.ForeignKey(
         MultiflexmeterVersion,
