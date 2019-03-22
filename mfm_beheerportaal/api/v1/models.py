@@ -1,6 +1,7 @@
 import datetime
 
 from django.db import models
+from django.contrib.auth.models import Group
 from django.utils.translation import ugettext_lazy as _
 
 from mfm_beheerportaal import validators
@@ -8,12 +9,8 @@ from mfm_beheerportaal import validators
 # Create your models here.
 
 
-class Organisation(models.Model):
-    """An organisation"""
-    name = models.CharField(
-        max_length=100,
-        unique=True
-    )
+class Organisation(Group):
+    """An organisation as group"""
     abbreviation = models.CharField(
         max_length=100,
         unique=True,
