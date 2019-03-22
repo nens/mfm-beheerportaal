@@ -1,3 +1,3 @@
-from .devices import *
-from .device_version import *
-from .gateways import *
+from .devices import DeviceViewSet
+from .device_version import DeviceVersionViewSet
+from .gateways import GatewayViewSet
