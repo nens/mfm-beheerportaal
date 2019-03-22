@@ -20,8 +20,14 @@ class Organisation(Group):
 
 class Network(models.Model):
     """A network which provides communication"""
+    abbreviation = models.CharField(
+        _('Abbreviation'),
+        primary_key=True,
+        max_length=100,
+        unique=True
+    )
     name = models.CharField(
-        _('name'),
+        _('Name'),
         max_length=100,
         unique=True
     )
