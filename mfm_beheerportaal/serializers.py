@@ -17,3 +17,8 @@ class GatewaySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Gateway
         fields = ('identifier', 'owner', 'description', 'router', 'brand')
+
+class OrganisationSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = models.Organisation
+        fields = ('name', 'abbreviation')
