@@ -26,4 +26,4 @@ class OrganisationSerializer(serializers.HyperlinkedModelSerializer):
 class NetworkSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Network
-        fields = ('name', 'active')
+        fields = ('abbreviation', 'name', 'active')

@@ -14,8 +14,7 @@ class Organisation(Group):
     abbreviation = models.CharField(
         primary_key=True,
         max_length=100,
-        unique=True,
-        blank=True
+        unique=True
     )
 
 
@@ -42,9 +41,9 @@ class Network(models.Model):
 class MultiflexmeterVersion(models.Model):
     """Specifies a Multiflexmeter version"""
     name = models.CharField(
+        primary_key=True,
         max_length=100,
-        unique=True,
-        primary_key=True
+        unique=True
     )
     description = models.TextField(
         null=True,
