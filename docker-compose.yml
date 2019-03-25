@@ -52,10 +52,15 @@ services:
 
   rabbit:
     image: rabbitmq
-
+  
+  influxdb:
+    image: influxdb:latest
+    volumes:
+      - influxdb:/var/lib/influxdb
 
 volumes:
   pgdata:
+  influxdb:
 
 #for local development, you may want to open some ports by adding a
 #docker-compose.override.yml file with host:docker port mappings
