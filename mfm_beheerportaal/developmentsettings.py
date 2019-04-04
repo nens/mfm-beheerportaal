@@ -2,6 +2,7 @@ from mfm_beheerportaal.settings import *
 
 DEBUG = True
 
+LOGGING['disable_existing_loggers'] = False
 LOGGING['loggers']['']['level'] = 'DEBUG'
 LOGGING['loggers']['django.db.backends']['handlers'] = ['sqllogfile']
 
