@@ -199,6 +199,15 @@ INSTALLED_APPS += (
 # Add your production name here
 ALLOWED_HOSTS = ['admin.multiflexmeter.net']
 
+# Influx database connection details
+INFLUX = {
+    'HOST': 'influxdb',
+    'PORT': 8086,
+    'DATABASE': 'multiflexmeter',
+    'USER': 'beheerportaal',
+    'PASSWORD': 'beheerportaal'
+}
+
 try:
     from mfm_beheerportaal.localproductionsettings import *
     # For local production overrides (DB passwords, for instance)
