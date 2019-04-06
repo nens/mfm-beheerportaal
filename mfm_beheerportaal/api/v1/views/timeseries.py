@@ -1,7 +1,13 @@
+import logging
 
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 from rest_framework.decorators import action
+
+from mfm_beheerportaal.api.v1.influxwrapper import InfluxWrapper
+from mfm_beheerportaal.api.v1.models import Multiflexmeter
+
+logger = logging.getLogger(__name__)
 
 class TimeserieViewSet(ViewSet):
     """
@@ -17,8 +23,18 @@ class TimeserieViewSet(ViewSet):
         """
         Retrieve all measurements in a certain timerange for given devices
         """
+        # Ensure start and end parameters are given
         start, end = self.get_timerange(request)
-        return Response('Not implemented')
+        # Get resolution parameter
+        resolution = request.GET.get('resolution', '1h')
+        # Get devices
+        mfm = Multiflexmeter.objects.get(pk=pk)
+        logger.info('Retrieving timeseries')
+        # Create connection
+        influx = InfluxWrapper()
+        # Retrieve timeseries
+        result = influx.get_timeseries(mfm, 'wns8819', start, end, resolution)
+        return Response(list(result.get_points()))
 
     @action(methods=['get'], detail=True, url_path='(?P<wns_id>[^/.]+)', url_name='WNS')
     def retrieve_wns(self, request, pk, wns_id):
