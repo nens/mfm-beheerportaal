@@ -15,6 +15,12 @@
         shell: "/bin/bash"
         groups: ''  # ensuring buildout is not a member of the sudo group
         append: no  # append=yes would make groups='' ineffective
+        
+    - name: Add executing user to authorized ssh keys
+      authorized_key:
+        user: "{{ build_user }}"
+        state: present
+        key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
 
     - name: Grant "{{ build_user }}" permission to reload nginx
       lineinfile:
