@@ -19,6 +19,8 @@ web:
     supervisor_programs: [
         'gunicorn'
     ]
+    ssl_certificate_location: "/etc/nginx/ssl/{{ site_name }}.pem"
+    ssl_certificate_key_location: "/etc/nginx/ssl/{{ site_name }}.key.pem"
 
 
 task:

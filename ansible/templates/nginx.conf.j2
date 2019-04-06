@@ -1,11 +1,26 @@
+# Redirect HTTP to HTTPS
 server {
     listen 80;
+    sever_name {{ site_name }};
+
+    location / {
+        return 302 https://$server_name$request_uri;
+    }
+}
+
+# HTTPS to django application proxy
+server {
+    listen 443;
+
     client_max_body_size 1G;
     server_name {{ site_name }};
 
     keepalive_timeout 5;
     access_log {{ project_path }}/var/log/access.log;
     error_log {{ project_path }}/var/log/error.log;
+
+    ssl_certificate {{ ssl_certificate_location }};
+    ssl_certificate_key {{ ssl_certificate_key_location }};
 
     location /static_media/ {
        alias {{ project_path }}/var/static/;
