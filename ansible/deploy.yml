@@ -6,8 +6,7 @@
 ---
 - name: deploy new version of the project to the server
   hosts: web
-  become: yes
-  become_user: "{{ build_user }}"
+  remote_user: "{{ build_user }}"
 
   tasks:
 
