@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     locales \
     tzdata \
+    libmariadbclient-dev \
 && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN locale-gen en_US.UTF-8
