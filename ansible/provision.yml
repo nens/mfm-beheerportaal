@@ -40,7 +40,7 @@
         - memcached
         - nginx
         - logrotate
-        - libpq-dev       # for psycopg2 (postgres backend)
+        - libmariadbclient-dev # for mariadb backend
 
     - name: Upgrade setuptools
       pip:
