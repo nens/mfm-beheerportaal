@@ -57,13 +57,6 @@
         - { src: "templates/supervisord.conf.j2", dest: "{{ project_path }}/etc/{{ site_name }}.supervisord.conf" }
         - { src: "templates/nginx.conf.j2", dest: "{{ project_path }}/etc/{{ site_name }}.nginx.conf" }
 
-    - name: Recreate nginx config file.
-      template:
-        src: "templates/nginx.conf.j2"
-        dest: "{{ project_path }}/etc/{{ site_name }}.nginx.conf"
-        mode: 0755
-      when: inventory_hostname in groups['web']
-
     - name: Run migrations.
       shell: pipenv run python manage.py migrate --noinput
       args:
