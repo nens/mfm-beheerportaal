@@ -208,6 +208,13 @@ INFLUX = {
     'PASSWORD': 'beheerportaal'
 }
 
+# Set default to IsAuthenticated
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
+}
+
 try:
     from mfm_beheerportaal.localproductionsettings import *
     # For local production overrides (DB passwords, for instance)
